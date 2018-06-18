@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+    }
+    .area {
+      fill: skyblue;
+      stroke: white;
+      stroke: lightskyblue;
+      /*stroke-dasharray: .1rem;*/
+    }
+    .area:nth-child(odd) {
+      fill: steelblue;
+      stroke: white;
+    }
+    .area:nth-child(3n) {
+      fill: powderblue;
+      stroke: white;/
+    }
+    .area:nth-child(27) {
+      fill: tan;
+      stroke: white;
+    }
+    .oceanTitle {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-weight: 900;
+      font-size: 60px;
+      stroke: tan;
+      fill: papayawhip;
+    }
+    svg {
+      background-color: seashell;
+    }
+  </style>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://unpkg.com/jeezy@1.11.0/lib/jeezy.min.js"></script>
+</head>
+<body>
+  <script>
+
+  let alpha = "abcdefghijklmnopqrstuvwxyz".split("");
+
+  const margin = {top: 100, bottom: 125, left: 125, right: 125};
+  const width = window.innerWidth - margin.right - margin.left;
+  const height = window.innerHeight - margin.top - margin.bottom;
+
+
+  const svg = d3.select('body')
+    .append('svg')
+    .attr('width', width + margin.right + margin.left)
+    .attr('height', height + margin.bottom + margin.top)
+    .append('g')
+    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+
+  let y_wrapper = d3.scaleBand()
+      .rangeRound([0, height])
+      .domain(alpha);
+
+  let y = d3.scaleLinear()
+      .rangeRound([y_wrapper.bandwidth(), 0])
+      .domain([0, 100]);
+
+  let x = d3.scaleLinear()
+      .range([0, width])
+      .domain([1, 100]);
+
+  let area = d3.area()
+      .x(function(d) { return x(d.day); })
+      .y1(function(d) { return y(d.value * 2); })
+      .y0(y(0))
+      .curve(d3.curveCatmullRom.alpha(0.5));
+
+  drawChart(makeData());
+
+  d3.interval(function(){
+    drawChart(makeData());    
+  }, 90);
+
+  function drawChart(data){
+
+    let area_path = svg.selectAll(".area")
+        .data(data, function(d){ return d.id; });
+
+    area_path
+      .transition()
+      .duration(260)
+      .attr("d", function(d){ return area(d.data); });
+
+    area_path.enter().append("path")
+        .attr("class", "area")
+        .attr("transform", function(d) { return "translate(0, " + y_wrapper(d.id) + ")"; })
+        .attr("d", function(d){ return area(d.data); })
+
+  }
+
+  function makeData(){
+    return alpha.map(function(letter){
+      let arr = [];
+      for (let i = 1; i <= 100; i++){
+        arr.push({day: i, value: jz.num.randBetween(5, 150)})
+      }
+      return {
+        id: letter,
+        data: arr
+      }
+    });
+  }
+
+  svg.append('text')
+    .attr('class', 'oceanTitle')
+    .html('Windy Beach')
+    .attr('x', (width / 2) - margin.right - margin.left)
+    .attr('y', (margin.top) - 130)
+
+  d3.select('.oceanTitle')
+    .lower()
+
+
+  </script>
+
+</body>
+</html>
