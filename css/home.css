@@ -1,0 +1,207 @@
+h1, h2 {
+      font-family: "consolas" ;
+      font-size: 1.8rem;
+      color: black;
+      font-weight: bold;
+    }
+
+h3 {
+      font-family: "consolas" ;
+      font-size: 1.4rem;
+      color: black;
+      font-weight: bold;
+    }
+
+
+.row {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+      margin-right: -15px;
+      margin-left: -15px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+  }
+  body {
+    margin: 0;
+  }
+  .mainBody {
+    background-color: white;
+  }
+  .area {
+    fill: skyblue;
+    /*stroke: azure;*/
+    /*stroke-dasharray: .1rem;*/
+  }
+ /* .area:nth-child(odd) {
+    fill: steelblue;
+    stroke: white;
+  }
+  .area:nth-child(3n) {
+    fill: powderblue;
+    stroke: white;/
+  }*/
+  .area:nth-child(1) {
+    fill: #fbb4ae;
+    stroke: white;
+  }
+  .area:nth-child(2) {
+    fill: #b3cde3;
+    stroke: white;
+  }
+  .area:nth-child(3) {
+    fill: #ccebc5;
+    stroke: white;
+  }
+  .area:nth-child(4) {
+    fill: #decbe4;
+    stroke: white;
+  }
+  .area:nth-child(5) {
+    fill: #fed9a6;
+    stroke: white;
+  }
+  .area:nth-child(6) {
+    fill: #ffffcc;
+    stroke: white;
+  }
+  .area:nth-child(7) {
+    fill: #e5d8bd; /*#e5d8bd;*/
+    stroke: white;
+  }
+  .area:nth-child(8) {
+    fill: #fddaec;
+    stroke: white;
+  }
+  .area:nth-child(9) {
+    fill: skyblue;
+    stroke: white;
+  }
+  .area:nth-child(10) {
+    fill: #ffffcc;
+    stroke: white;
+  }
+
+  .about {
+    text-align: center;
+    font-family: consolas;
+    font-size: .5 rem;
+  }
+
+  .aboutMe {
+    font-family: consolas;
+    font-size: 1.2rem;
+  }
+
+  .bodyPosts {
+    max-width: 45rem;
+    margin: 1rem auto;
+    text-align: center;
+  }
+
+  .oceanTitle {
+    font-family:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /*font-weight: 400;*/
+    stroke: black;
+    fill: black;
+    text-align: center;
+  }
+
+  svg {
+    background-color: seashell;
+  }
+
+u.dotted {
+  border-bottom: 1px dashed tan; /*#999*/
+  text-decoration: none; 
+  margin-top: 0;
+}
+
+img {
+  height: 300px;
+  width: 300px;
+  border: 1px black solid;
+}
+
+.flex-grid-thirds {
+  max-width: 50rem;
+  margin: 3rem auto;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  height: 15rem;
+}
+.flex-grid-thirds .col {
+  width: 40%;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: antiquewhite;
+    bottom: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+
+/* Style the links inside the navigation bar */
+.topnav a, .topnav p {
+    float: right;
+    color: tan;
+    text-align: center;
+    padding: 0px 4px;
+    font-size: .9rem;
+    border-bottom: 0px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    color: #fbb4ae;
+}
+
+#scrolly-side .scrolly {
+  display: flex;
+  /*max-width: 60rem;*/
+  margin: 0rem auto;
+  background-color: seashell;
+  padding: 1rem;
+}
+#scrolly-side .scrolly > * {
+  flex: 1;
+}
+#scrolly-side .scrolly article {
+  padding-left: 1rem;
+  max-width: 70%;
+}
+#scrolly-side .scrolly article .step {
+  min-height: 60vh;
+  margin-bottom: 1rem;
+  background-color: seashell;
+}
+#scrolly-side .scrolly article .step:last-of-type {
+  margin-bottom: 0;
+}
+#scrolly-side .scrolly article .step.is-active {
+  background-color: seashell;
+}
+#scrolly-side .scrolly article .step p {
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+  color: red;
+}
+#scrolly-side .scrolly figure.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  max-width: 30%;
+  height: 60vh;
+  background: seashell;
+  margin: 0;
+  top: 2vh;
+  margin-top: 0;
+}
+
+figure.sticky p {
+  font-size: .94rem;
+}
+
+

@@ -2,48 +2,25 @@
 <html>
 <head>
   <style>
-    body {
-      margin: 0;
-    }
-    .area {
-      fill: skyblue;
-      stroke: white;
-      stroke: lightskyblue;
-      /*stroke-dasharray: .1rem;*/
-    }
-    .area:nth-child(odd) {
-      fill: steelblue;
-      stroke: white;
-    }
-    .area:nth-child(3n) {
-      fill: powderblue;
-      stroke: white;/
-    }
-    .area:nth-child(27) {
-      fill: tan;
-      stroke: white;
-    }
-    .oceanTitle {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      font-weight: 900;
-      font-size: 60px;
-      stroke: tan;
-      fill: papayawhip;
-    }
-    svg {
-      background-color: seashell;
-    }
+    
   </style>
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://unpkg.com/jeezy@1.11.0/lib/jeezy.min.js"></script>
+  <link rel='stylesheet' href="css/home.css">
 </head>
-<body>
+<body class='mainBody'>
+    <!-- <a  href="#section2">Click Me to Smooth Scroll to Section 2 Below</a>  -->
+
+
+
+
+
   <script>
 
-  let alpha = "abcdefghijklmnopqrstuvwxyz".split("");
+  let alpha = "abcdefghi".split("");
 
-  const margin = {top: 100, bottom: 125, left: 125, right: 125};
-  const width = window.innerWidth - margin.right - margin.left;
+  const margin = {top: 25, bottom: 0, left: 0, right: 0};
+  const width = window.innerWidth - margin.right - margin.left - 20;
   const height = window.innerHeight - margin.top - margin.bottom;
 
 
@@ -86,7 +63,7 @@
 
     area_path
       .transition()
-      .duration(260)
+      .duration(380)
       .attr("d", function(d){ return area(d.data); });
 
     area_path.enter().append("path")
@@ -100,7 +77,7 @@
     return alpha.map(function(letter){
       let arr = [];
       for (let i = 1; i <= 100; i++){
-        arr.push({day: i, value: jz.num.randBetween(5, 150)})
+        arr.push({day: i, value: jz.num.randBetween(0, 100)}) //5, 130
       }
       return {
         id: letter,
@@ -109,17 +86,121 @@
     });
   }
 
-  svg.append('text')
+  d3.select('svg').append('text')
     .attr('class', 'oceanTitle')
-    .html('Windy Beach')
-    .attr('x', (width / 2) - margin.right - margin.left)
-    .attr('y', (margin.top) - 130)
+    .html('Jared Wilber')
+    .attr('x', (width / 2))
+    .attr('y', (height / 2))
+    .attr('font-family', 'consolas')
+    .attr('fill', 'black')
+    .attr('text-anchor', 'middle')
 
-  d3.select('.oceanTitle')
-    .lower()
+  d3.select('svg').append("svg:a")
+    .attr("xlink:href", "#aboutMe")
+    .attr("target", "_self")
+    .append('text')
+      .html('About Me')
+      .attr('x', (width / 2) - 50)
+      .attr('y', (height / 1.8))
+      .attr('font-family', 'consolas')
+      // .attr('font-weight', 'bold')
+      .attr('fill', 'black')
+      .attr('text-decoration', 'underline')
+      .attr('font-size', '1.1rem')
+      .attr('text-anchor', 'middle')
+      .attr('class', 'underlinee') 
+      .on('mouseover', function(d) {
+        d3.select(this).attr('font-weight', '900')
+        d3.select(this).attr('font-size', '1.3rem')
+      })
+      .on('mouseout', function(d) {
+        d3.select(this).attr('font-weight', '0')
+        d3.select(this).attr('font-size', '1.1rem')
+      })
+    
 
+  d3.select('svg').append("svg:a")
+    .attr("xlink:href", "#projects")
+    .attr("target", "_self")
+    .append('text')
+      .attr('class', 'heywelcome')
+      .html('Projects')
+      .attr('x', (width / 2) + 50)
+      .attr('y', (height / 1.8))
+      .attr('font-family', 'consolas')
+      .attr('font-size', '1.1rem')
+      .attr('fill', 'black')
+      .attr('text-decoration', 'underline')
+      .attr('text-anchor', 'middle')
+      .on('mouseover', function(d) {
+        d3.select(this).attr('font-weight', '900')
+        d3.select(this).attr('font-size', '1.3rem')
+      })
+      .on('mouseout', function(d) {
+        d3.select(this).attr('font-weight', '0')
+        d3.select(this).attr('font-size', '1.1rem')
+      })
+
+  d3.select('.heywelcome')
+      .transition()
+      .delay(3500)
+      .attr('visibility', 'visible')
+
+  // svg.append('text')
+  //   .attr('class', 'oceanTitle')
+  //   .html('Jared Wilber')
+  //   .attr('x', (width / 3) - (margin.left + margin.right))
+  //   .attr('y', (height / 2) + 100)
+  // d3.select('svg').append("foreignObject")
+  //   .attr("x", width / 2)
+  //   .attr("y", height / 1.5)
+  //   .attr('width', width / 2)
+  //   .append("xhtml:body")
+  //   .html("<a id='top' class='scroll' href='#bottom'>Bottom</a>")
+
+  // svg.append("foreignObject")
+  //   .attr("x", width / 4)
+  //   .attr("y", height / 3)
+  //   .attr('width', width / 2)
+  //   .append("xhtml:body")
+  //   .html("<p style='font-family:consolas;font-size:1.3rem;font-weight:bold;'>Hello! I’m a recent graduate of UC Berkeley interested in data science, open-source software, and information design. <br><br>I’m currently a data scientist at Neudesic. Previously, I was on the data science team at Classy.org. Feel free to reach out to me via <a href='mailto:jdwlbr@gmail.com'>email</a>, <a href='https://twitter.com/jdwlbr'>Twitter</a>, or <a href='https://github.com/jwilber'>GitHub</a>.<br><br>You can see what I’ve been working on below.</p>")
+ 
 
   </script>
+  <a name="aboutMe">&nbsp;</a>
+  <center><h1><u class='dotted'>About Me</u></h1></center>
+  
+  <p class='about'>Hello!  I’m a recent graduate of UC Berkeley interested in data science, open-source software, and information design. <br><br>I’m currently a data scientist at Neudesic. Previously, I was on the data science team at Classy.org. Feel free to reach out to me via <a href='mailto:jdwlbr@gmail.com'>email</a>, <a href='https://twitter.com/jdwlbr'>Twitter</a>, or <a href='https://github.com/jwilber'>GitHub</a>.<br><br>You can see what I’ve been working on below.</p>
+  <br>
+  <br>
+  <br>
+<!--   <center><h1><u class='dotted'><a name="projects">Projects</a></u></h1></center>
+ -->  <!-- Page Content -->
+   <a name="projects">&nbsp;</a>
+  <center><h1><u class='dotted'>Projects & Blog Posts</u></h1></center>
+ <div class="flex-grid-thirds">
+  <div class="col">
+    <h3><u class='dotted'>The Good, the Rad, and the Gnarly</u></h3><img src="https://github.com/jwilber/Pudding_Skate-Music/raw/master/skatemusic.gif?raw=true"></div>
+  <div class="col">This little piggy stayed home.</div>
+</div>
 
+ <div class="flex-grid-thirds">
+  <div class="col">This little piggy went to market.</div>
+  <div class="col">This little piggy had roast beef.</div>
+</div>
+
+ <div class="flex-grid-thirds">
+  <div class="col">This little piggy went to market.</div>
+  <div class="col">This little piggy stayed home.</div>
+</div>
+
+ <div class="flex-grid-thirds">
+  <div class="col">This little piggy went to market.</div>
+  <div class="col">This little piggy stayed home.</div>
+</div>
+
+<div class="topnav">
+        <p> Header graphic made with <a href='https://d3js.org/'>d3.js</a></p>
+      </div>
 </body>
 </html>
